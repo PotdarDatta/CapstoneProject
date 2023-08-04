@@ -2,6 +2,7 @@ package simplilearn.pageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -38,10 +39,10 @@ public class AddressPage extends AbstractComponents {
 	@FindBy(name = "_eventId_confirm")
 	WebElement nextButton2;
 	
-	@FindBy(xpath = "//div[@class='text-center']/a")
+	@FindBy(xpath = "//div[@class='col-sm-4 col-sm-offset-4']/div/a")
 	WebElement confirmButton;
 	
-	@FindBy(xpath = "//div[@class=\\\"text-center\\\"]/div/a")
+	@FindBy(xpath ="//a[@class='btn btn-lg btn-success']")
 	WebElement loginButton;
 
 	public void AddressLineOne(String AddressLine1) {
@@ -79,7 +80,7 @@ public class AddressPage extends AbstractComponents {
 	}
 
 	public void nextButton2() {
-
+		waitForWebElementToAppear(nextButton2);
 		nextButton2.click();
 	}
    
@@ -90,15 +91,27 @@ public class AddressPage extends AbstractComponents {
 		postalCode.sendKeys(postCode);
 		state.sendKeys(Statename);
 		country.sendKeys(countryname);
-		confirmButton.click();
+		
 	}
 	
-	public LoginPage loginButton() {
-		
-		loginButton.click();
+	public LoginPage loginButton() throws InterruptedException {
+		Thread.sleep(2000);
+		Actions actions = new Actions(driver);
+		actions.moveToElement(loginButton).click().perform();
+	//waitForWebElementToAppear(loginButton);
+		//loginButton.click();
 		
 		LoginPage LoginPage = new LoginPage(driver);
 		
 		return LoginPage;
+	}
+	public void confirmButton() throws InterruptedException {
+		Thread.sleep(2000);
+		
+		Actions actions = new Actions(driver);
+		actions.moveToElement(confirmButton).click().perform();
+		//driver.switchTo().alert().accept();
+		//
+	 //confirmButton.click();
 	}
 }

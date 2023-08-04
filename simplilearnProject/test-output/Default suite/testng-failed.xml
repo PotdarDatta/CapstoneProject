@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="simplilearn.tests.loginValidation">
+      <class name="simplilearn.tests.AddToCartScenario">
         <methods>
-          <include name="userLogin"/>
+          <include name="userAddMultipleToCard"/>
+          <include name="tearDown"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- simplilearn.tests.loginValidation -->
+      </class> <!-- simplilearn.tests.AddToCartScenario -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

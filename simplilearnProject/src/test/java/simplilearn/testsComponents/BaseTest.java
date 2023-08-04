@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -62,17 +63,14 @@ public class BaseTest {
 
 	}
 
-	public String getScreenshot(String testCaseName,WebDriver driver) throws IOException
-	{
-		TakesScreenshot ts = (TakesScreenshot)driver;
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
 		FileUtils.copyFile(source, file);
 		return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
-		
-		
+
 	}
-	
 
 	@BeforeMethod(alwaysRun = true)
 	public LandingPage launchApplication() throws IOException {
@@ -82,6 +80,11 @@ public class BaseTest {
 		LandingPage.Goto();
 		return LandingPage;
 
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void tearDown() {
+		driver.close();
 	}
 
 }

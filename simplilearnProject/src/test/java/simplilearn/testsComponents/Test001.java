@@ -3,6 +3,7 @@ package simplilearn.testsComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,12 +12,12 @@ public class Test001 {
 	
 	@Test()
 	public void test1() throws InterruptedException
-	{
-		driver=new ChromeDriver();
+	{	ChromeOptions opt=new ChromeOptions();
+	   opt.addArguments("--remote-allow-origins=*");
+		driver=new ChromeDriver(opt);
 		driver.manage().window().maximize();
 		driver.get("http://localhost:8080/medicare/");
 		Thread.sleep(5000);	
-		
 	}
 	
 	@Test ()

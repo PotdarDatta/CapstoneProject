@@ -23,7 +23,7 @@ public class LoginPage extends AbstractComponents {
 	@FindBy(id ="password")
 	WebElement password;
 	
-	@FindBy(xpath = "//input[@type=\\\"submit\\\"]")
+	@FindBy(xpath = "//input[@type='submit']")
 	WebElement submitButtun;
 	
 	public void userDetails(String userName,String Password) {
